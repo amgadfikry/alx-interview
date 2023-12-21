@@ -61,6 +61,8 @@ def main():
     try:
         for line in fileinput.input():
             line = line.rstrip()
+            if not check_line(line):
+                continue
             line_num += 1
             state_code = line.split(' ')[7]
             total_size += int(line.split(' ')[8])
