@@ -1,40 +1,9 @@
 #!/usr/bin/python3
 """solve interview question of parselog metrics"""
 import fileinput
-from ipaddress import ip_address
-from datetime import datetime
 
 
-def check_line(line: str) -> bool:
-    """function check line is same pattern
-        Args:
-            line (str): line of log file
-        Returns:
-            bool: True if line is same pattern, False otherwise
-    """
-    arr = line.split(' ')
-    if len(arr) != 9:
-        return False
-    try:
-        ip_address(line.split(' ')[0])
-    except ValueError:
-        return False
-    if line.split(' ')[1] != '-':
-        return False
-    date_fromat: str = '%Y-%m-%d %H:%M:%S.%f'
-    if not datetime.strptime(line.split('[')[1].split(']')[0], date_fromat):
-        return False
-    if line.split('"')[1] != 'GET /projects/260 HTTP/1.1':
-        return False
-    try:
-        int(arr[7])
-        int(arr[8])
-    except ValueError:
-        return False
-    return True
-
-
-def print_me(size: int, status) -> None:
+def print_me(size, status):
     """print final results of status code
         Args:
             size (int): total size of file
@@ -48,7 +17,7 @@ def print_me(size: int, status) -> None:
         print('{}: {}'.format(k, status[k]))
 
 
-def main() -> None:
+def main():
     """main function entry point
         Args:
             None
@@ -56,13 +25,11 @@ def main() -> None:
             None
     """
     status = {}
-    total_size: int = 0
-    line_num: int = 0
+    total_size = 0
+    line_num = 0
     try:
         for line in fileinput.input():
             line = line.rstrip()
-            if not check_line(line):
-                continue
             line_num += 1
             state_code = line.split(' ')[7]
             total_size += int(line.split(' ')[8])
