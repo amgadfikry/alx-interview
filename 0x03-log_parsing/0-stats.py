@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """solve interview question of parselog metrics"""
 import fileinput
-import re
 
 
 def print_me(size, status):
@@ -31,15 +30,6 @@ def main():
     try:
         for line in fileinput.input():
             line = line.rstrip()
-            regex = re.compile(
-                r'\S+ - \[\S+ \S+\] "GET /projects/260 HTTP/1.1" (\d+) (\d+)')
-            if not regex.match(line):
-                continue
-            try:
-                x = int(line.split(' ')[-2])
-                y = int(line.split(' ')[-1])
-            except Exception:
-                continue
             line_num += 1
             state_code = line.split(' ')[-2]
             total_size += int(line.split(' ')[-1])
