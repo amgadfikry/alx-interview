@@ -71,6 +71,8 @@ def main():
             if line_num % 10 == 0:
                 print_me(total_size, status)
     except KeyboardInterrupt:
+        pass
+    finally:
         print_me(total_size, status)
 
 
