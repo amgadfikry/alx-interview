@@ -30,7 +30,7 @@ def check_line(line: str) -> bool:
     return True
 
 
-def print_me(size: int, status: Dict[str, int]):
+def print_me(size: int, status: Dict[str, int]) -> None:
     """print final results of status code"""
     print('File size: {}'.format(size))
     keys: List[str] = sorted([k for k in status])
