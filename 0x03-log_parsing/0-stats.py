@@ -27,8 +27,8 @@ def check_line(line):
     if line.split('"')[1] != 'GET /projects/260 HTTP/1.1':
         return False
     try:
-        int(arr[7])
-        int(arr[8])
+        x = int(arr[7])
+        y = int(arr[8])
     except ValueError:
         return False
     return True
