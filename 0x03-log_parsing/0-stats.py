@@ -1,6 +1,36 @@
 #!/usr/bin/python3
 """solve interview question of parselog metrics"""
 import fileinput
+from ipaddress import ip_address
+from datetime import datetime
+
+def check_line(line: str) -> bool:
+    """function check line is same pattern
+        Args:
+            line (str): line of log file
+        Returns:
+            bool: True if line is same pattern, False otherwise
+    """
+    arr = line.split(' ')
+    if len(arr) != 9:
+        return False
+    try:
+        ip_address(line.split(' ')[0])
+    except ValueError:
+        return False
+    if line.split(' ')[1] != '-':
+        return False
+    date_fromat: str = '%Y-%m-%d %H:%M:%S.%f'
+    if not datetime.strptime(line.split('[')[1].split(']')[0], date_fromat):
+        return False
+    if line.split('"')[1] != 'GET /projects/260 HTTP/1.1':
+        return False
+    try:
+        int(arr[7])
+        int(arr[8])
+    except ValueError:
+        return False
+    return True
 
 
 def print_me(size, status):
