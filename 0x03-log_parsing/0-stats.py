@@ -1,14 +1,18 @@
 #!/usr/bin/python3
-"""solve interview question """
+"""solve interview question of parselog metrics"""
 import fileinput
 from ipaddress import ip_address
 from datetime import datetime
-from typing import List, Dict
 
 
 def check_line(line: str) -> bool:
-    """function check line is same pattern"""
-    arr: List[str] = line.split(' ')
+    """function check line is same pattern
+        Args:
+            line (str): line of log file
+        Returns:
+            bool: True if line is same pattern, False otherwise
+    """
+    arr = line.split(' ')
     if len(arr) != 9:
         return False
     try:
@@ -30,17 +34,28 @@ def check_line(line: str) -> bool:
     return True
 
 
-def print_me(size: int, status: Dict[str, int]) -> None:
-    """print final results of status code"""
+def print_me(size: int, status) -> None:
+    """print final results of status code
+        Args:
+            size (int): total size of file
+            status (Dict[str, int]): status code and count
+        Returns:
+            None
+    """
     print('File size: {}'.format(size))
-    keys: List[str] = sorted([k for k in status])
+    keys = sorted([k for k in status])
     for k in keys:
         print('{}: {}'.format(k, status[k]))
 
 
 def main() -> None:
-    """main function entry point"""
-    status: Dict[str, int] = {}
+    """main function entry point
+        Args:
+            None
+        Returns:
+            None
+    """
+    status = {}
     total_size: int = 0
     line_num: int = 0
     try:
