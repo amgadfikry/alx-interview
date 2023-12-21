@@ -4,7 +4,8 @@ import fileinput
 from ipaddress import ip_address
 from datetime import datetime
 
-def check_line(line: str) -> bool:
+
+def check_line(line):
     """function check line is same pattern
         Args:
             line (str): line of log file
@@ -20,7 +21,7 @@ def check_line(line: str) -> bool:
         return False
     if line.split(' ')[1] != '-':
         return False
-    date_fromat: str = '%Y-%m-%d %H:%M:%S.%f'
+    date_fromat = '%Y-%m-%d %H:%M:%S.%f'
     if not datetime.strptime(line.split('[')[1].split(']')[0], date_fromat):
         return False
     if line.split('"')[1] != 'GET /projects/260 HTTP/1.1':
