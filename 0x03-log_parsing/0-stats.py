@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 """solve interview question of parselog metrics"""
 import fileinput
-from ipaddress import ip_address
-from datetime import datetime
+import re
 
 
 def print_me(size, status):
@@ -32,6 +31,10 @@ def main():
     try:
         for line in fileinput.input():
             line = line.rstrip()
+            regex = re.compile(
+                r'\S+ - \[\S+ \S+\] "GET /projects/260 HTTP/1.1" (\d+) (\d+)')
+            if not regex.match(line):
+                continue
             line_num += 1
             state_code = line.split(' ')[-2]
             total_size += int(line.split(' ')[-1])
