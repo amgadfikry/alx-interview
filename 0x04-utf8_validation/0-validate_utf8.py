@@ -15,10 +15,10 @@ def validUTF8(data):
             if char_long != 1:
                 return False
             continue
-        if data[i] > 127 and data[i] < 256:
+        if data[i] > 127:
             num_bin = '{0:08b}'.format(data[i])
             char_long = num_bin.find('0')
-            if char_long > 4 or char_long < 2:
+            if char_long not in [2, 3, 4]:
                 return False
             continous = char_long - 1
     return True
