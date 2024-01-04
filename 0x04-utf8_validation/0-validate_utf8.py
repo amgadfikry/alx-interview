@@ -15,7 +15,9 @@ def validUTF8(data):
             if char_long != 1:
                 return False
             continue
+        if char_long == 0:
+            continue
         if char_long > 3:
             return False
-        continous = char_long - 1 if char_long > 0 else 0
+        continous = char_long - 1
     return continous == 0
