@@ -20,5 +20,5 @@ def validUTF8(data):
             char_long = num_bin.find('0')
             if char_long > 4 or char_long < 2:
                 return False
-            continous += char_long
+            continous = char_long - 1
     return True
