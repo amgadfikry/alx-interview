@@ -11,6 +11,6 @@ def validUTF8(data):
             num_bin = '{0:08b}'.format(data[i])
             char_long = num_bin.find('0')
             i = i + int(char_long) - 1
-        if i >= len(data):
+        if i > len(data):
             return False
     return True
