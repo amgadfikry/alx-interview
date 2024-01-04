@@ -7,10 +7,7 @@ def validUTF8(data):
     continous_bytes = 0
 
     for byte in data:
-        if byte < 0 or byte > 255:
-            return False
-
-        byte_bin = '{0:08b}'.format(byte)
+        byte_bin = '{0:08b}'.format(byte)[-8:]
         leading_ones = byte_bin.find('0')
 
         if continous_bytes > 0:
