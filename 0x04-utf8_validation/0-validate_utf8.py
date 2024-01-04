@@ -4,20 +4,25 @@
 
 def validUTF8(data):
     """ function check if data is utf8 or not """
-    continous = 0
-    for num in data:
-        if num < 0 or num > 255:
+    continuation_bytes = 0
+    for byte in data:
+        if byte < 0 or byte > 255:
             return False
-        num_bin = '{0:08b}'.format(num)
-        char_long = num_bin.find('0')
-        if continous > 0:
-            continous -= 1
-            if char_long != 1:
+        leading_ones = bin(byte)[2:].count('1')
+
+        if leading_ones == 0:
+            continuation_bytes = 0
+            continue
+
+        if continuation_bytes > 0:
+            if leading_ones != 1:
                 return False
+            continuation_bytes -= 1
             continue
-        if char_long == 0:
-            continue
-        if char_long > 3:
+
+        if leading_ones > 4 or leading_ones == 1:
             return False
-        continous = char_long - 1
-    return continous == 0
+
+        continuation_bytes = leading_ones - 1
+
+    return continuation_bytes == 0
