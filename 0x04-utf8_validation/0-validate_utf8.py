@@ -22,7 +22,7 @@ def validUTF8(data):
         if leading_ones == 0:
             continue
 
-        if leading_ones > 4:
+        if leading_ones > 4 or leading_ones == 1:
             return False
 
         continous_bytes = leading_ones - 1
