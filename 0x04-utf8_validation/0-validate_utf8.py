@@ -10,7 +10,7 @@ def validUTF8(data):
         if data[i] > 127 and data[i] < 256:
             num_bin = '{0:08b}'.format(data[i])
             char_long = num_bin.find('0')
-            if char_long > 4 or char_long == 1:
+            if char_long > 4 or char_long < 2:
                 return False
             for j in range(i + 1, char_long):
                 cont_byte = '{0:08b}'.format(data[j])
