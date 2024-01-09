@@ -14,11 +14,11 @@ def nqueens():
     try:
         chess_num = int(chess_num)
     except ValueError:
-        print(' must be a number')
+        print('N must be a number')
         exit(1)
 
     if chess_num < 4:
-        print('N must be at least 4')
+        print(' must be at least 4')
         exit(1)
 
     first_col = 1 if chess_num % 2 == 0 else 0
