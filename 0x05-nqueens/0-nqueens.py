@@ -6,7 +6,7 @@ from sys import argv
 def nqueens():
     """ solve problem of n queens interview problem """
     if len(argv) != 2:
-        print('Usage: nqueens ')
+        print('Usage: nqueens N')
         exit(1)
 
     chess_num = argv[1]
@@ -14,7 +14,7 @@ def nqueens():
     try:
         chess_num = int(chess_num)
     except ValueError:
-        print('N must be a number')
+        print(' must be a number')
         exit(1)
 
     if chess_num < 4:
